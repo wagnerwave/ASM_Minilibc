@@ -1,3 +1,4 @@
+
 ##
 ## EPITECH PROJECT, 2020
 ## Alexandre Wagner
@@ -7,26 +8,26 @@
 
 D_SRC	=	./src/
 
-SRC		=	$(D_SRC)strlen.s
+SRC	=	$(D_SRC)strlen.s
 
-OBJ		=	$(SRC:.s=.o)
+OBJ	=	$(SRC:.s=.o)
 
-LDFLAGS	=	libasm.so
+NAME	=	libasm.so
 
-all:		$(NAME);
+all:		$(NAME)
 
 $(NAME):	$(OBJ)
-			$(LD) -o $(NAME) $(OBJ) $(LDFLAGS)
+		ld -fPIC -shared -o $(NAME) $(OBJ)
 
 %.o:		%.s
-			nasm -felf64 < -o $@
+		nasm -felf64 $< -o $@
 
 clean:		
-			rm -f $(OBJ)
+		rm -f $(OBJ)
 
 fclean:		clean
-			rm -f $(NAME)
+		rm -f $(NAME)
 
-re:			fclean all
+re:		fclean all
 
 .PHONY:		all clean fclean re
