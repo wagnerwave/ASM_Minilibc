@@ -14,4 +14,4 @@ strlen:
 	jmp	.LOOP		   ; loop();
 	
 .EXIT:	
-	int 0x80		; exit
+	ret		; exit
