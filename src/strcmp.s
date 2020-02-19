@@ -8,7 +8,7 @@ strcmp:
     xor     rax, rax            ; set return value to zero
 
 .WHILE:
-    mov     al, BYTE [rdi]      ; put the index of argument 1 into argument 3 (not initialised)
+    mov     al, BYTE [rdi]      ; put the index of argument 1 into al
     cmp     BYTE [rsi], al      ; compare the index of argument 1 and argument 2
     jnz     .EXIT_FAIL          ; go to exit fail
     cmp	    al, 0               ; check if index of argument 1 is egal to '\0'
