@@ -1,32 +1,28 @@
 BITS 64
-	;; int strncmp(const char *s1, const char *s2, size_t n);
+	;; int strncmp(const char *s1, const char *s2);
 	global strcmp:function
 
 	section .text
 
-strncmp:
-    xor     rax, rax        ; set return value to zero
-    cmp     rdx, 0          ; check if arguement 3 rd is egal to zero
-    jz      .EXIT           ; go to exit
+strcmp:
+    xor     rax, rax            ; set return value to zero
 
 .WHILE:
-    mov rdx, [rdi + rax]    ; put the index of argument 1 into argument 3 (not initialised)
-    mov rcx, [rsi + rax]    ; put the index of argument 2 into argument 4 (not initialised)
-    cmp rdx, rcx            ; compare the index of argument 1 and argument 2
-    je  .VALUE_INC          ; go to incrementation of rax
-    cmp	BYTE [rdi + rax], 0 ; check if index of argument 1 is egal to '\0'
-    je  .END                ; go to end
-    cmp BYTE [rsi + rax], 0 ; check if index of arugment 2 is egal to '\0'
-    je  .END                ; go to end
-    jmp .WHILE              ; go to the while
+    mov     al, BYTE [rdi]      ; put the index of argument 1 into argument 3 (not initialised)
+    cmp     BYTE [rsi], al      ; compare the index of argument 1 and argument 2
+    jnz     .EXIT_FAIL          ; go to exit fail
+    cmp	    al, 0               ; check if index of argument 1 is egal to '\0'
+    jz      .EXIT_WIN           ; go the exit win
+    inc     rdi                 ; increment of arguement 1
+    inc     rsi                 ; increment of arguement 2
+    jmp     .WHILE              ; go to the while
 
-.VALUE_INC:
-    inc rax                 ; increment the compteur
 
-.END:
-    sub rdx, rcx            ; index of argument 1 egal index of argument 1 subtrac to index of argument 2
-    mov rax, rdx            ; put the resultat of the calcul into the return value
-    ret                     ; return value of rax
+.EXIT_FAIL:
+    xor     ecx, ecx            ; temporary value egal to zeo
+    mov     cl, BYTE [rsi]      ; put the resultat of the calcul into the return value
+    sub     eax, ecx            ; return value of eax
+    ret                         ; return value
 
-.EXIT:
-    ret                     ; return value of rax
+.EXIT_WIN:
+    ret                         ; return value of rax
