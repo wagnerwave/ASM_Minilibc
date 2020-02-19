@@ -7,27 +7,34 @@
 ##
 
 D_SRC	=	./src/
+D_TEST	=	./tests/
 
-SRC	=	$(D_SRC)strlen.s
+SRC	=		$(D_SRC)strlen.s \
+			$(D_SRC)strchr.s \
+			$(D_SRC)memset.s
 
-OBJ	=	$(SRC:.s=.o)
+OBJ	=		$(SRC:.s=.o)
 
 NAME	=	libasm.so
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ)
-		ld -fPIC -shared -o $(NAME) $(OBJ)
+			ld -fPIC -shared -o $(NAME) $(OBJ)
 
 %.o:		%.s
-		nasm -felf64 $< -o $@
+			nasm -felf64 $< -o $@
 
-clean:		
-		rm -f $(OBJ)
+clean:
+			rm -f $(OBJ)
+
+tests_run:	re
+			mv $(NAME) $(D_TEST)
+			make re -C $(D_TEST) --no-print-directory
 
 fclean:		clean
-		rm -f $(NAME)
+			rm -f $(NAME)
 
-re:		fclean all
+re:			fclean all
 
 .PHONY:		all clean fclean re

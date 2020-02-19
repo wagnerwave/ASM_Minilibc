@@ -3,15 +3,15 @@ BITS 64
 	global  strlen:function
 
 	section .text
-	 
+
 strlen:
-	xor	rax, rax 	; rax = 0;
+	mov	rax, rax 	; rax = 0;
 
 .LOOP:
 	cmp	BYTE[rdi + rax], 0 ; if (*s == NULL && s[rax] == 0)
 	je	.EXIT		   ; 	exit();
 	inc	rax		   ; rax++;
 	jmp	.LOOP		   ; loop();
-	
-.EXIT:	
-	ret		; exit
+
+.EXIT:
+	ret		; return rax
