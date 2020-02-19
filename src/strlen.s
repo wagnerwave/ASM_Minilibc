@@ -5,13 +5,13 @@ BITS 64
 	section .text
 
 strlen:
-	mov	rax, rax 	; rax = 0;
+	xor	rax, rax 			;  move the 1 fst argument to the return value
 
 .LOOP:
-	cmp	BYTE[rdi + rax], 0 ; if (*s == NULL && s[rax] == 0)
-	je	.EXIT		   ; 	exit();
-	inc	rax		   ; rax++;
-	jmp	.LOOP		   ; loop();
+	cmp	BYTE[rdi + rax], 0  ; compare byte value to NULL
+	je	.EXIT		 	    ; go to exit if the comparasion is true
+	inc	rax		   			; increment rax
+	jmp	.LOOP		   		; go to himself
 
 .EXIT:
-	ret		; return rax
+	ret						; return value
