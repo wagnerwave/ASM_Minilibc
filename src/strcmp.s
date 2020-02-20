@@ -9,7 +9,7 @@ strcmp:
 
 .WHILE:
     mov     al, BYTE [rdi]      ; put the index of argument 1 into al
-    cmp     BYTE [rsi], al      ; compare the index of argument 1 and argument 2
+    cmp     BYTE [rsi], al      ; compare the index of argument 1 with argument 2
     jnz     .EXIT_FAIL          ; go to exit fail
     cmp	    al, 0               ; check if index of argument 1 is egal to '\0'
     jz      .EXIT_WIN           ; go the exit win
