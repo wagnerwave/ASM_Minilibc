@@ -1,6 +1,6 @@
 BITS 64
 	;; void *memcpy(void *dest, const void *src, size_t n);
-	global memcpyA:function
+	global memcpy:function
 
 	section .text
 
