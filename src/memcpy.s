@@ -1,6 +1,6 @@
 BITS 64
 	;; void *memcpy(void *dest, const void *src, size_t n);
-	global memcpy:function
+	global memcpyA:function
 
 	section .text
 
@@ -17,7 +17,8 @@ memcpy:
     jz      .EXIT                   ; if egal go to exit
     mov     al, BYTE [rsi]          ; put the value of the 2 nd arguement into al
     mov     BYTE [rdi], al          ; put the value of the 2 nd argument into the 1st arguement
-    dec     rdx                     ; incrementation of rcx
+    dec     rdx                     ; deincrementation of rdx
+    inc     rdi                     ; incrementation of rdi
     jmp     .LOOP                   ; go to the loop
 
 .EXIT:
