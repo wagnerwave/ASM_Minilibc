@@ -6,12 +6,12 @@ BITS 64
 
 rindex:
     xor     rax, rax        ; set return value to zero
-    cmp     rdi, 0          ; compare argument 2 to NULL
-    jz      .EXIT_FAIL      ; if argument 2 go to exit fail
+    cmp     BYTE [rdi], 0          ; compare argument 2 to NULL
+    je      .EXIT_FAIL      ; if argument 2 go to exit fail
 
 .WHILE:
     mov     al, BYTE [rdi]  ; put the index of argument 1 into al
-    cmp     sil,  al        ; comparement the index of argument 1 with argument 2
+    cmp     al, sil         ; comparement the index of argument 1 with argument 2
     je      .FIND           ; go to find
     inc     rdi             ; increment of arguement 1
     cmp     BYTE [rdi], 0   ; check if argument 1 pointer is not null
