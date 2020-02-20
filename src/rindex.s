@@ -5,26 +5,21 @@ BITS 64
 	section .text
 
 rindex:
-    xor     rax, rax        ; set return value to zero
-    cmp     BYTE [rdi], 0          ; compare argument 2 to NULL
-    je      .EXIT_FAIL      ; if argument 2 go to exit fail
+    xor     eax, eax        ; set return value to zero
 
 .WHILE:
-    mov     al, BYTE [rdi]  ; put the index of argument 1 into al
-    cmp     al, sil         ; comparement the index of argument 1 with argument 2
+    mov     cl, BYTE [rdi]  ; put the index of argument 1 into al
+    cmp     cl, sil         ; comparement the index of argument 1 with argument 2
     je      .FIND           ; go to find
+    cmp     cl, 0           ; compare if it is the end of the argument 1
+    jz      .EXIT_FAIL      ; go to exit fail
     inc     rdi             ; increment of arguement 1
-    cmp     BYTE [rdi], 0   ; check if argument 1 pointer is not null
-    je      .EXIT_FAIL      ; if egal go to exit win
-    jmp   .WHILE            ; go the the while
+    jmp     .WHILE          ; go the the while
 
 .FIND:
-    mov   rax, rdi          ; move pointer of argument 1 to rax
-    jmp   .EXIT_WIN         ; return value of rax
-
-.EXIT_WIN:
+    mov     rax, rdi        ; move pointer of argument 1 to rax
     ret                     ; return value of rax
 
 .EXIT_FAIL:
-    mov rax, 0              ; return value egal NULL
+    mov     rax, 0          ; return value egal NULL
     ret                     ; return value of rax
