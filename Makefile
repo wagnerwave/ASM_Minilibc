@@ -12,7 +12,10 @@ D_TEST	=	./tests/
 SRC	=		$(D_SRC)strlen.s \
 			$(D_SRC)strchr.s \
 			$(D_SRC)memset.s \
-			$(D_SRC)strcmp.s
+			$(D_SRC)memcpy.s \
+			$(D_SRC)strcmp.s \
+			$(D_SRC)strncmp.s \
+			$(D_SRC)rindex.s 
 
 OBJ	=		$(SRC:.s=.o)
 
