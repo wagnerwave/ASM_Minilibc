@@ -3,10 +3,9 @@
 ## Makefile
 ## File description:
 ## Makefile
-## $(SRC_DIR)tests-my_strstr.c	\
+##
 ## $(SRC_DIR)tests-my_strcspn.c	\
 ## $(SRC_DIR)tests-my_strpbrk.c	\
-## ## $(SRC_DIR)tests-my_strcasecmp.c	
 
 SRC_DIR		=	src/
 
@@ -15,8 +14,9 @@ SRC		=				\
 		$(SRC_DIR)tests-my_strchr.c	\
 		$(SRC_DIR)tests-my_memset.c	\
 		$(SRC_DIR)tests-my_strcmp.c	\
-		$(SRC_DIR)tests-my_strncmp.c \
+		$(SRC_DIR)tests-my_strncmp.c    \
 		$(SRC_DIR)tests-my_rindex.c	\
+		$(SRC_DIR)tests-my_strstr.c	\
 		$(SRC_DIR)tests-my_memcpy.c	
 
 OBJ		=	$(SRC:.c=.o)
