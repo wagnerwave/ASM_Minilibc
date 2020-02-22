@@ -5,28 +5,22 @@ BITS 64
 	section .text
 
 memmove:
-    mov     rax, rdi                ; put the 1 st argument into return value
-    cmp     rdi, 0                  ; if the 2nd argument is NULL
-    je      .EXIT_FAIL              ; go to exit fail
-    cmp     rdx, 0                  ; if the argument 3rd is egal to 0
-    jz      .EXIT                   ; go to exit
-    xor     r8, r8                  ; index
+    mov      rcx, 0                 ; set rcx to 0
+    jmp      .LOOP                  ; jump to loop
+
+.INC_RCX:
+    inc     rcx                     ; increment rcx
 
 .LOOP:
-    cmp     rdi, 0                  ; if the 2nd argument is NULL
-    je      .EXIT                   ; go to exit
-    cmp     r8, rdx                 ; if the index is egal to 3 rd argument
-    je      .EXIT                   ; if egal go to exit
-    mov     dl, BYTE [rsi]          ; put the value of the 2 nd arguement into dl
-    mov     BYTE [rdi], dl          ; put the value of dl into the 1st arguement
-    inc     r8                      ; incrementation of index
-    inc     rsi                     ; incrementation of 2 nd argument
-    inc     rdi                     ; incrementation of 1 st argument
-    jmp     .LOOP                   ; go to the loop
+    cmp     BYTE [rdi + rcx], 0     ; check if is not the end of the 2nd argument
+    jz      .EXIT_FAIL              ; go to EXIT FAIL
+    cmp     BYTE [rdi + rcx], sil   ; compare the index of 1st argument into sil
+    jne     .INC_RCX                ; if not egal go increment rcx
+    mov     rax, rdi + rcx]         ; move the pointer info the return value
+    jmp     .RET                    ; go to return
 
 .EXIT_FAIL:
-    mov     rax, 0                  ; return value egal NULL
-    ret                             ; return value of rax
+    xor     rax, rax                  ; set rax to 0
 
-.EXIT:
+.RET:
     ret                             ; return value of rax
