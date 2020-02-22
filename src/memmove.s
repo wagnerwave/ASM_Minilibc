@@ -16,7 +16,7 @@ memmove:
     jz      .EXIT_FAIL              ; go to EXIT FAIL
     cmp     BYTE [rdi + rcx], sil   ; compare the index of 1st argument into sil
     jne     .INC_RCX                ; if not egal go increment rcx
-    mov     rax, rdi + rcx]         ; move the pointer info the return value
+    mov     rax, [rdi + rcx]         ; move the pointer info the return value
     jmp     .RET                    ; go to return
 
 .EXIT_FAIL:
