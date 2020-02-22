@@ -30,10 +30,10 @@ strstr:
     jmp     .WHILE                  ; go the the while
 
 .EXIT_FAIL:
-    cmp    BYTE [rsi], 0            ;
+    cmp    BYTE [rsi], 0            ; check is 2 nd argument is not null
     jz     .RET
     xor    rax, rax                 ; rax egal NULL
     ret                             ; return value of rax
 
 .RET:
-    ret
+    ret                             ; return value of rax
