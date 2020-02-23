@@ -28,10 +28,4 @@ strcspn:
 
 .EXIT_WIN:
 	mov rax, rdx				; move compter rdx to rax
-	jmp .RET					; go to retur value
-
-.EXIT_FAIL:
-	xor rax, rax				; reset rax to zero
-
-.RET:
 	ret 						; return value of rax
