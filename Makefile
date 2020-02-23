@@ -18,7 +18,8 @@ SRC	=		$(D_SRC)strlen.s \
 			$(D_SRC)strncmp.s \
 			$(D_SRC)rindex.s \
 			$(D_SRC)strstr.s \
-			$(D_SRC)strpbrk.s
+			$(D_SRC)strpbrk.s \
+			$(D_SRC)strcspn.s
 
 OBJ	=		$(SRC:.s=.o)
 

@@ -5,7 +5,7 @@ BITS 64
 	section .text
 
 strpbrk:
-    mov rax, rdi				; put the 1 st argument to game
+    mov rax, rdi				; put the 1 st argument to rax
 	jmp .LOOP					; go to loop label
 
 .INC_RAX:
