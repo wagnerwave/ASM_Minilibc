@@ -1,5 +1,4 @@
-
-1;5202;0c##
+##
 ## EPITECH PROJECT, 2020
 ## Alexandre Wagner
 ## File description:
