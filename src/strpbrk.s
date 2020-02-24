@@ -1,6 +1,6 @@
 BITS 64
 	;; char *strpbkr(const char *s, const char *accept);
-	global strpbkr:function
+	global strpbrk:function
 
 	section .text
 
