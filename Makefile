@@ -1,5 +1,5 @@
 
-##
+1;5202;0c##
 ## EPITECH PROJECT, 2020
 ## Alexandre Wagner
 ## File description:
@@ -37,10 +37,6 @@ $(NAME):	$(OBJ)
 
 clean:
 			rm -f $(OBJ)
-
-tests_run:	re
-			mv $(NAME) $(D_TEST)
-			make re -C $(D_TEST) --no-print-directory
 
 fclean:		clean
 			rm -f $(NAME)
