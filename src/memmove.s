@@ -18,16 +18,18 @@ memmove:
 
 .CPY_MEMORY:
     mov    rax, rdi             ; put the 1 st argument to rax
+    cmp    rdx, 0               ; compare rdx to zero
+    je     .EXIT                ; go to exit if egal
+    add    rax, rdx             ; add to rax rdx
+    mov    rcx, rsi             ; mov to rcx to 2nd argument
+    add    rcx, rdx             ; add to rcx rdx
 
 .WHILE:
-    cmp     rdx, 0              ; compare rdx to zero
-    je      .EXIT               ; if egal go to exit
-    mov     al, BYTE [rsi]      ; move the 2nd byte argument to rax (8bit)
-    mov     BYTE [rdi], al      ; compare the byte of 1 st argument with rax (8bit)
-    dec     rdx                 ; decrementation of rdx
-    inc     rdi                 ; incrementation of rdi
-    inc     rsi                 ; incrementation of 2 nd argument
-    jmp     .WHILE              ; go to WHILe
+    dec    rax                  ; decrementation of rax
+    dec    rcx                  ; decrementation of rcx
+    mov    r8b, BYTE [rcx]      ; mov to r8b to byte of rcx
+    mov    rdi, rax             ; mov to rdi rax
+    jne    .LOOP                ; if not egal to loop
 
 .EXIT:
     ret                         ; return value of rax
